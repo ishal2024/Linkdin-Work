@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended : true}))
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-second-frontend.com"
+  "https://linkdinass.netlify.app"
 ];
 
 app.use(
