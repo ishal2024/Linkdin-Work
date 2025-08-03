@@ -6,6 +6,13 @@ async function registerUser(req, res) {
     try {
         const { name, email, bio, password } = req?.body
 
+        if (req?.cookies?.token){
+            console.log(req?.cookies)
+            const decoded = await verifyToken(req?.cookies?.token, process.env.TOKEN_SECRET_KEY)
+            if (!decoded) return res.status(400).json({ message: "Invalid Token Id" })
+            return res.status(400).json({ message: "User already Logged In" })
+        }
+
         const user = await userModel.find({ email })
         if (user?.length !== 0) return res.status(400).json({ message: "User already Exist" })
 
